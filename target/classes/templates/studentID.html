@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<!--<Sidebar>-->
+<section>
+
+    <h1 class="text-center heading">Student List</h1>
+    <div id="contents" class="content">
+
+        <!-- search bar-->
+
+        <div class="container">
+            <div class="search-container  my-3">
+                <input onkeyup="StudentIdSearch()" type="text" id="search-input" class="form-control"
+                       placeholder="Search your name">
+                <div id="search-result" class="search-result">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="con">
+                <div th:classappend="${ScrollBar > 10}? 'table--overflow':''">
+                    <table class="table table-striped table-hover table-bordered ">
+                        <thead class="table-dark text-center align-middle">
+                        <tr>
+
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>E-mail</th>
+                            <th>Username</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="text-center align-middle">
+                        <tr th:each="student:${students}">
+                            <td th:text="${student.a1firstName}"></td>
+                            <td th:text="${student.a2lastName}"></td>
+                            <td th:text="${student.a3_email}"></td>
+                            <td th:text="${student.c1_username}"></td>
+                            <td th:text="${student.c3_date}"></td>
+                            <td>
+                                <a th:href="@{/user/students/studentID/{id} (id=${student.id})}"
+                                   class="btn btn-warning btn-sm mb-3">Delete StudentID</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

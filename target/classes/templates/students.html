@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Management System</title>
+</head>
+<body>
+
+<section>
+
+
+    <h1 class="text-center heading">Student List</h1>
+
+    <!-- search bar-->
+
+    <div id="contents" class="content">
+        <div class="container">
+            <div class="search-container  my-3">
+                <input onkeyup="teacherSearch()" type="text" id="search-input" class="form-control"
+                       placeholder="Search your name">
+                <div id="search-result" class="search-result">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container ">
+            <div class="con">
+                <div th:classappend="${ScrollBarLimitForTable > 10}? 'table--overflow':''">
+                    <table class="table table-striped table-hover table-bordered ">
+                        <thead class="table-dark text-center align-middle">
+                        <tr>
+                            <th>Student First Name</th>
+                            <th>Student Last Name</th>
+                            <th>Roll No</th>
+                            <th>Student email</th>
+                            <th>Action</th>
+                        </tr>
+
+                        </thead>
+                        <tbody class="text-center align-middle">
+
+
+                        <tr th:each="student:${students}">
+                            <td th:text="${student.firstName}"></td>
+                            <td th:text="${student.lastName}"></td>
+                            <td th:text="${student.rollNo}"></td>
+                            <td th:text="${student.email}"></td>
+                            <td>
+                                <tr1>
+                                    <td1>
+                                        <a th:href="@{/user/students/update/{id} (id=${student.id})}"
+                                           class="btn btn-primary btn-sm mb-3">Update Student</a>
+                                    </td1>
+                                    <td1>
+                                        <a th:href="@{/user/students/{id} (id=${student.id})}"
+                                           class="btn btn-warning btn-sm mb-3">Delete Student</a>
+                                    </td1>
+
+                                </tr1>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

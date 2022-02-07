@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Students</title>
+</head>
+<body>
+<section>
+
+
+    <div class="container">
+        <div style="height: 75vh!important;" class="d-flex container justify-content-center align-items-center">
+
+            <dic class="card" style="width: 70vh;">
+                <div class="card-body ">
+                    <form th:action="@{/verify-otp}" method="post">
+                        <div th:if="${session.success}" class="alert alert-success">
+                            OTP send successfully to given email
+                        </div>
+                        <div th:if="${session.msg}" class="alert alert-danger" th:text="${session.msg}">
+                        </div>
+                        <h1 class="text-center mb-3">Verify OTP</h1>
+                        <div class="input-group mb-3">
+
+                            <input type="text" name="otp" class="form-control" placeholder="Enter OTP" required>
+
+
+                            <button type="submit" class="btn btn-primary">
+                                Verify
+                            </button>
+
+                        </div>
+                    </form>
+                    <div class="text-center mb-2">
+                        <form th:action="@{/sendOTP}" method="post">
+                            <button type="submit" class="btn btn-warning">
+                                Resend
+                            </button>
+                            <a type="button" class="btn btn-secondary" th:href="@{/forgot}">Change Email</a>
+                        </form>
+                    </div>
+                </div>
+            </dic>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

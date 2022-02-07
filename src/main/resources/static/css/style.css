@@ -1,0 +1,420 @@
+body {
+    background-color: whitesmoke;
+}
+
+.bg-backcolor {
+    background-color: darkgray;
+    border-color: lightslategray;
+}
+
+.bg-backcolor:hover {
+    background-color: lightslategray;
+    border-color: darkgray;
+
+}
+
+.bg-backcolor:disabled {
+    background-color: lightslategray;
+    border-color: darkgray;
+}
+
+/*shadow class*/
+.shadow-container {
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);;
+}
+
+.check-bg {
+    background-color: darkgray;
+}
+
+input:checked ~ .check-bg {
+    background-color: #2196F3;
+}
+
+/*home screen*/
+.banner {
+    width: 100%;
+    height: 93vh;
+    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url("../image/wallpaperflare.com_wall.jpg");
+    background-size: cover;
+    color: white;
+}
+
+
+/*Login SignUp pages*/
+.login-container {
+    margin-top: 120px;
+    max-width: 400px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+}
+
+#login #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+.margin-top-signup {
+    margin-top: 90px;
+}
+
+.text-color {
+    color: #efafbb;
+}
+
+/*side bar*/
+
+
+@media only screen and (max-width: 750px) {
+    /*to prevent initial transition of side bar*/
+    .preload {
+        transition: none !important;
+    }
+
+    /*side bar responsive*/
+    .sidebar {
+
+        width: 80% !important;
+        top: 0;
+        left: -100%;
+        position: fixed;
+        background: white;
+        height: 100vh;
+        padding-top: 20px;
+        z-index: 3;
+        /*transform: translateX(-100%);*/
+        transition: 0.3s left;
+    }
+
+
+    .animation {
+        left: 0;
+        box-shadow: 0px 5px 20px #9C9C9C;
+
+    }
+
+    .sidebar .crossbtn {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        right: 35px;
+        font-size: 36px;
+        cursor: pointer;
+    }
+
+
+    .content {
+        margin-left: 0% !important;
+        padding: 5px;
+    }
+
+    #toggle {
+        display: block !important;
+    }
+
+    .heading {
+        margin-left: 0% !important;
+    }
+
+    /*responsive login and sign up page*/
+    /*--starts*/
+    .margin-top-signup {
+        margin-top: 30px !important;
+    }
+
+    .login-container {
+        margin-top: 50px !important;
+    }
+
+    /*ends--*/
+    /*controlling overflow of table for small screen*/
+    .con {
+        overflow: auto;
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .table--overflow {
+
+        height: auto !important;
+        overflow-y: unset !important;
+    }
+
+    /*    searchBar*/
+    .search-container {
+        margin-left: 0% !important;
+    }
+
+    /*    change pass and email*/
+    .chose {
+        font-size: 1rem !important;
+    }
+
+}
+
+.sidebar {
+    width: 15%;
+    position: fixed;
+    background: white;
+    height: 100%;
+    padding-top: 45px;
+    z-index: 3;
+
+}
+
+.sidebar .crossbtn {
+    display: none;
+
+}
+
+.sidebar a {
+    display: block;
+    width: 100%;
+    padding: 12px 30px;
+    text-decoration: none;
+    color: grey;
+    margin-top: 0;
+}
+
+.activeBar, .sidebar a:hover {
+    background: #e2e2e2;
+}
+
+
+.sidebar .divider {
+    height: 0.5px;
+    width: 100%;
+    margin-top: 10px;
+    background: #e2e2e2;
+    z-index: 2;
+}
+
+i {
+
+    width: 20px;
+    margin-right: 15px;
+
+}
+
+.content {
+    margin-left: 20%;
+}
+
+.table--overflow {
+    overflow-y: scroll;
+    height: 682px;
+    border-bottom: 2px solid;
+
+}
+
+.table--overflow table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-bottom: 2px solid lightgray;
+    margin-bottom: 0 !important;
+}
+
+.table--overflow th {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    border: 0px solid black;
+    z-index: 9;
+
+}
+
+thead:after {
+
+    display: inline-block;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background: red;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+    transition: visibility 0.4s, opacity 0.3s;
+}
+
+.overly_open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+#toggle {
+    display: none;
+}
+
+/*student List heading*/
+.heading {
+    margin-left: 20%;
+}
+
+/*Search bar*/
+
+.search-container {
+    position: relative;
+}
+
+.search-result {
+    visibility: hidden;
+    position: absolute;
+    background: white;
+    width: 100%;
+    border: 1px solid #ced4da;;
+    border-top: 0px;
+    z-index: 10;
+    border-radius: 0 0 .25rem .25rem;
+    box-shadow: 5px 5px 10px grey;
+
+    padding: 10px;
+}
+
+.list-group-item {
+    border: none !important;
+}
+
+.list-group-item:hover {
+    color: black;
+    background: #EAEAEA;
+    border-radius: 5px;
+}
+
+.activeResult {
+    color: black !important;
+    background: #EAEAEA !important;
+    border-radius: 5px !important;
+}
+
+.search-field-radius {
+    border-radius: .25rem .25rem 0 0;
+}
+
+/*change password*/
+
+.changePassword {
+    display: none;
+}
+
+.changeEmail {
+    display: none;
+}
+
+#sett {
+    visibility: hidden;
+}
+
+.chose {
+    display: block;
+    background: black;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border: 1px solid #9C9C9C;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.chose:hover {
+    background: #9C9C9C;
+    color: white;
+}
+
+.choseSelected {
+    background: whitesmoke;
+    color: black;
+}
+
+.blackcontainer {
+    background: black;
+    border-radius: 10px;
+    border: 2px solid #9C9C9C;
+}
+
+/*Profile in side bar*/
+.profile {
+    display: flex;
+    width: 100%;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 0px !important;
+    text-transform: capitalize;
+    text-decoration: none;
+
+    color: grey;
+    margin-top: 0;
+    margin-bottom: 20px !important;
+    font-size: 1.2rem;
+    font-weight: 400;
+
+}
+
+.profile:hover {
+    color: lightgrey;
+    background: white !important;
+}
+
+.imgcontainer {
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 10px !important;
+    margin-right: 10px !important;
+    margin-left: 10px;
+}
+
+.profile .img {
+    width: auto;
+    height: 100%;
+
+
+}
+
+.imagecontainer {
+    display: inline-block;
+    position: relative;
+    width: 25vh;
+    height: 25vh;
+    border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.table--imagecontainer {
+    display: inline-flex;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+}

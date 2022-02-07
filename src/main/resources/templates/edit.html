@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="${std}? stdbase:(${admin} ? adminbase:userbase) ::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Students</title>
+</head>
+<body>
+<section>
+
+
+    <div id="contents" class="content">
+        <div style="height: 75vh!important;" class="d-flex container justify-content-center align-items-center">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h1 class="text-center" style="text-transform: capitalize">Edit Profile</h1>
+
+
+                    <form class="needs-validation" novalidate
+                          th:with="baseUrl=${std} ? '/std/students':(${admin}? '/admin/zakir':'/user/students')"
+                          th:action="@{${baseUrl}+'/profile/edit'}" enctype="multipart/form-data" method="post">
+
+                        <div class="mb-3">
+                            <label for="firstName" class="mb-3 form-label">First Name</label>
+                            <input
+                                    id="firstName"
+                                    type="text"
+                                    name="firstName"
+                                    th:value="${firstName}"
+                                    class="form-control"
+                                    th:classappend="${error} ? 'is-invalid':''"
+                                    placeholder="Enter First Name"
+                                    required
+
+                            />
+
+                            <div class="invalid-feedback"
+                                 th:text="${error}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="mb-3 form-label">Last Name</label>
+                            <input
+                                    id="lastName"
+                                    type="text"
+                                    name="lastName"
+                                    th:value="${lastName}"
+                                    class="form-control"
+                                    th:classappend="${error1}? 'is-invalid':''"
+                                    placeholder="Enter Last Name"
+
+                                    required
+
+                            />
+
+                            <div class="invalid-feedback " th:text="${error1}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input name="removeImage" class="form-check-input" type="checkbox" value="" id="removeImage"
+                                   onclick="image()">
+                            <label class="form-check-label mb-2" for="removeImage">
+                                Remove Image
+                            </label><br>
+
+                            <div class="row">
+                                <label for="img" class="col-auto mb-2">Select Image: </label>
+                                <input class="col-auto" type="file" id="img" name="profileImage" accept="image/*">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary ">
+                            Change
+                        </button>
+
+                        <a th:with="baseUrl=${std} ? '/std/students':(${admin}? '/admin/zakir':'/user/students')"
+                           th:href="@{${baseUrl}+ '/profile' }" class="btn btn-secondary ">Cancel</a>
+
+
+                    </form>
+                </div>
+                </dic>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

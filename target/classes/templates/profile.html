@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="${std}? stdbase:(${admin} ? adminbase:userbase) ::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Students</title>
+</head>
+<body>
+<section>
+
+
+    <div id="contents" class="content">
+        <div style="height: 75vh!important;" class="d-flex container justify-content-center align-items-center">
+
+            <dic class="card" style="width: 70vh;">
+                <div class="card-body ">
+
+                    <div class="d-flex container text-center imagecontainer mb-3">
+                        <img style=" width: auto;height: 100%" th:src="'/image/'+(${user.image} ?:'profile.png')">
+                    </div>
+                    <h1 class="text-center" style="text-transform: capitalize" th:text="${profileName}"></h1>
+                    <table class="table text-center align-middle">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td th:text="${user.a3_email}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date Of Creation</th>
+                            <td th:text="${user.c3_date}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Role</th>
+                            <td id="role" style="text-transform: capitalize"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="container text-center">
+
+                        <a th:with="baseUrl=${std} ? '/std/students':(${admin}? '/admin/zakir':'/user/students')"
+                           th:href="@{${baseUrl}+'/profile/edit'}" style="width: 200px" class="btn btn-primary ">Edit
+                            Profile</a>
+
+                    </div>
+                </div>
+            </dic>
+
+
+        </div>
+
+    </div>
+    <script>
+        let role = "[[${user.c5role}]]"
+    </script>
+</section>
+
+</body>
+</html>

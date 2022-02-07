@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="stdbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+</head>
+<body>
+<section>
+
+
+    <div id="contents" class="content">
+        <h1 class="text-center head">Student List</h1>
+        <!-- search bar-->
+        <div class="container">
+            <div class="search-container my-3">
+                <input onkeyup="search()" type="text" id="search-input" class="form-control"
+                       placeholder="Search your name">
+                <div id="search-result" class="search-result">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+            <div class="con">
+                <table class="table table-striped table-hover table-bordered ">
+                    <thead class="text-center align-middle table-dark">
+                    <tr>
+                        <th>Student First Name</th>
+                        <th>Student Last Name</th>
+                        <th>Student email</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center align-middle">
+                    <tr th:each="student:${students}">
+                        <td th:text="${student.firstName}"></td>
+                        <td th:text="${student.lastName}"></td>
+                        <td th:text="${student.email}"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- pagination-->
+
+            <nav th:if="${totalPage > 1}" aria-label="...">
+                <div class="text-center mb-1">
+                    Total Students:[[${totalElements}]]
+                </div>
+                <ul class="pagination justify-content-center align-items-center mb-2">
+                    <li class="page-item" th:classappend="${CurrentPage == 1}? 'disabled':''">
+                        <a th:if="${CurrentPage > 1 }" class="page-link"
+                           th:href="@{/std/students/{pageNo} (pageNo=${CurrentPage}-1)}">Previous</a>
+                        <span th:unless="${CurrentPage > 1 }" class="page-link">Previous</span>
+                    </li>
+
+
+                    <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"
+                        th:classappend="${i == CurrentPage} ?'active':''"
+                        th:attr="aria-current=${i== CurrentPage} ? 'page':null">
+                        <a th:if="${i != CurrentPage}" class="page-link"
+                           th:href="@{/std/students/{pageNo} (pageNo=${i})}">[[${i}]]</a>
+                        <span th:unless="${i != CurrentPage}" class="page-link active"
+                              style="background: black!important">[[${i}]]</span>
+                    </li>
+
+
+                    <li class="page-item" th:classappend="${CurrentPage == totalPage}? 'disabled':''">
+                        <a th:if="${CurrentPage < totalPage}" class="page-link"
+                           th:href="@{/std/students/{pageNo} (pageNo=${CurrentPage}+1)}">Next</a>
+                        <span th:unless="${CurrentPage < totalPage}" class="page-link">Next</span>
+
+                    </li>
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>

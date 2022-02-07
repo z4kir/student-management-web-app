@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Students</title>
+</head>
+<body>
+<section>
+
+
+    <div id="contents" class="content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 mt-5 container justify-content-center align-middle card shadow-container">
+                    <h1 class="text-center">Add New Student</h1>
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate th:action="@{/user/students/new}"
+                              th:object="${student}" method="post">
+
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">FirstName</label>
+                                <input
+                                        id="firstname"
+                                        type="text"
+                                        name="firstName"
+                                        th:field="*{firstName}"
+                                        class="form-control "
+                                        th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid':''}"
+                                        placeholder="Enter Student First Name"
+                                        required
+
+                                />
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('firstName')}"
+                                     th:text="${e}">
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Student Last Name</label>
+                                <input
+                                        id="lastName"
+                                        type="text"
+                                        name="lastName"
+                                        th:field="*{lastName}"
+                                        class="form-control "
+                                        th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid':''}"
+                                        placeholder="Enter Student Last Name"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('lastName')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="rollNo" class="form-label">RollNo</label>
+                                <input
+                                        id="rollNo"
+                                        type="text"
+                                        name="rollNo"
+                                        th:field="*{rollNo}"
+                                        class="form-control"
+                                        th:classappend="${#fields.hasErrors('rollNo') ? 'is-invalid':''}"
+                                        placeholder="Enter Student Roll No"
+                                        required
+
+                                />
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('rollNo')}"
+                                     th:text="${e}">
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Student Email</label>
+                                <input
+                                        type="text"
+                                        name="email"
+                                        th:field="*{email}"
+                                        class="form-control"
+                                        th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}"
+                                        placeholder="Enter Student E-mail"
+                                        required
+
+                                />
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>

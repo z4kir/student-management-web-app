@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="${std} ? stdbase:(${admin} ? adminbase:userbase) ::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Students</title>
+</head>
+<body>
+<section>
+
+
+    <div id="contents" class="content">
+        <h1 class="text-center mt-3">Change Password And Email By Click On Below Button</h1>
+        <div class="container blackcontainer">
+            <div class="row justify-content-center">
+                <div class="col-auto my-3">
+
+                    <a id="pchose" class="col-auto chose" onclick="showChangePassword()">Change Password</a>
+                </div>
+                <div class="col-auto offset-md-3 my-3">
+                    <a id="echose" class="col-auto chose" onclick="showChangeEmail()">Change Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="sett" class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 mt-5 mb-5 container justify-content-center align-middle card shadow-container">
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate
+                              th:with="baseUrl=${std} ? '/std/students':(${admin}? '/admin/zakir':'/user/students')"
+                              th:action="@{${baseUrl}+'/setting/passwordCheck'}" method="post">
+                            <div id="changePassword" class="changePassword">
+                                <h2 class="text-center">Change Password</h2>
+                                <div th:if="${success== 'password'}" class="alert alert-success">
+                                    Password Changed Successfully
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Old Password</label>
+                                    <input
+                                            type="text"
+                                            name="oldPassword"
+                                            class="form-control"
+                                            th:classappend="${notMatchedOld} ? 'is-invalid':''"
+
+                                            required
+
+                                    />
+                                    <div class="invalid-feedback">
+                                        Password is incorrect!!
+                                    </div>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="mb-3 form-label">New Password</label>
+                                    <input
+                                            id="password"
+                                            type="password"
+                                            name="password"
+                                            class="form-control"
+                                            th:classappend="${smallPass} ? 'is-invalid':''"
+                                            required
+                                    />
+
+                                    <div class="invalid-feedback">
+                                        Password should contain more than four characters!!
+                                    </div>
+
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password2" class="mb-3 form-label">Confirm Password</label>
+                                    <input
+                                            id="password2"
+                                            type="password"
+                                            name="confirmPassword"
+                                            class="form-control"
+                                            th:classappend="${notMatchingNew} ? 'is-invalid':''"
+                                            required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Passwords are not matching!!
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                               onclick="showPassword()">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Show/hide Password
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" onclick="showChangePassword()">
+                                    Change Password
+                                </button>
+
+
+                            </div>
+
+                        </form>
+
+                        <form class="needs-validation" novalidate
+                              th:with="baseUrl=${std} ? '/std/students':(${admin}? '/admin/zakir':'/user/students')"
+                              th:action="@{${baseUrl}+'/setting/emailCheck'}" method="post">
+                            <div id="changeEmail" class="changeEmail">
+                                <h2 class="text-center">Change Email</h2>
+                                <div th:if="${success== 'email'}" class="alert alert-success">
+                                    E-mail Changed Successfully
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="mb-3 form-label">New Email</label>
+                                    <input
+                                            id="email"
+                                            type="text"
+                                            name="email"
+                                            class="form-control"
+                                            th:value="${email}"
+                                            th:classappend="${errorMsg} ? 'is-invalid':''"
+                                            placeholder="Enter new Email"
+
+                                            required
+
+                                    />
+                                    <div class="invalid-feedback" th:each="e : ${errorMsg}"
+                                         th:text="${e}">
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Change Email
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const failCheck = "[[${fail}]]";
+        const success = "[[${success}]]";
+    </script>
+</section>
+</body>
+</html>
